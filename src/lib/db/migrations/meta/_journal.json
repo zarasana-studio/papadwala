@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1775470053561,
+      "tag": "0000_modern_blue_shield",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1775471384954,
+      "tag": "0001_narrow_boom_boom",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1775551405238,
+      "tag": "0002_dark_imperial_guard",
+      "breakpoints": true
+    }
+  ]
+}
