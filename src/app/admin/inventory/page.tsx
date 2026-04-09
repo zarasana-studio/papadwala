@@ -1,17 +1,12 @@
 import { db } from "@/lib/db";
 import { products, productVariants } from "@/lib/db/schema";
-import { count, eq, sql } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Package, AlertTriangle } from "lucide-react";
 import {
-  ShoppingBag,
-  Package,
-  DollarSign,
-  Users,
-  TrendingUp,
-  AlertTriangle,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+  InventoryTable,
+} from "@/components/admin/inventory/inventory-table";
+import { InventoryItem } from "@/components/admin/inventory/inventory-columns";
 
 export default async function AdminInventoryPage() {
   const allVariants = await db
@@ -30,169 +25,71 @@ export default async function AdminInventoryPage() {
 
   const lowStockThreshold = 10;
   const lowStockItems = allVariants.filter((v) => v.stock < lowStockThreshold);
-  const outOfStockItems = allVariants.filter((v) => v.stock === 0);
+  const outOfStockItems = allVariants.filter((v) => (v.stock ?? 0) === 0);
 
   return (
-    <div className="p-8 space-y-8 max-w-7xl mx-auto pb-12">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">
-            Inventory Management
-          </h1>
-          <p className="text-muted-foreground">
-            Monitor and update stock levels for all papad variants.
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline" className="rounded-2xl" asChild>
-            <Link href="/admin/products/new">New Product</Link>
-          </Button>
-          <Button className="rounded-2xl" asChild>
-            <Link href="/admin/products">Manage Catalogue</Link>
-          </Button>
-        </div>
+    <div className="p-8 space-y-8 max-w-7xl mx-auto pb-12 animate-in fade-in duration-500">
+      <div className="flex flex-col gap-1">
+        <h1 className="text-3xl font-medium tracking-tight font-serif text-slate-900">
+          Inventory Management
+        </h1>
+        <p className="text-sm text-slate-600 font-medium">
+          Monitor and update stock levels for all papad variants.
+        </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
-        <Card className="rounded-3xl border-none shadow-sm bg-white overflow-hidden">
+        <Card className="rounded-3xl border-none shadow-sm shadow-slate-100 bg-emerald-50/30 overflow-hidden transition-all hover:bg-emerald-50/50">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-semibold text-emerald-900/80">
               In Stock Variants
             </CardTitle>
-            <Package className="w-4 h-4 text-emerald-500" />
+            <Package className="w-4 h-4 text-emerald-500/80" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-medium tracking-tight text-emerald-950">
               {allVariants.length - outOfStockItems.length}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-[10px] font-medium uppercase tracking-wider text-emerald-700/60">
               Active inventory items
             </p>
           </CardContent>
         </Card>
-        <Card className="rounded-3xl border-none shadow-sm bg-amber-50 overflow-hidden border-amber-100">
+        <Card className="rounded-3xl border-none shadow-sm shadow-slate-100 bg-amber-50/40 overflow-hidden transition-all hover:bg-amber-50/60">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-amber-900">
+            <CardTitle className="text-sm font-semibold text-amber-900/80">
               Low Stock
             </CardTitle>
-            <AlertTriangle className="w-4 h-4 text-amber-500" />
+            <AlertTriangle className="w-4 h-4 text-amber-500/80" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-amber-900">
+            <div className="text-2xl font-medium tracking-tight text-amber-950">
               {lowStockItems.length}
             </div>
-            <p className="text-xs text-amber-700">
+            <p className="text-[10px] font-medium uppercase tracking-wider text-amber-700/60">
               Below threshold ({lowStockThreshold})
             </p>
           </CardContent>
         </Card>
-        <Card className="rounded-3xl border-none shadow-sm bg-rose-50 overflow-hidden border-rose-100">
+        <Card className="rounded-3xl border-none shadow-sm shadow-slate-100 bg-rose-50/40 overflow-hidden transition-all hover:bg-rose-50/60">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-rose-900">
+            <CardTitle className="text-sm font-semibold text-rose-900/80">
               Out of Stock
             </CardTitle>
-            <Package className="w-4 h-4 text-rose-500" />
+            <Package className="w-4 h-4 text-rose-500/80" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-rose-900">
+            <div className="text-2xl font-medium tracking-tight text-rose-950">
               {outOfStockItems.length}
             </div>
-            <p className="text-xs text-rose-700">Needs replenishment</p>
+            <p className="text-[10px] font-medium uppercase tracking-wider text-rose-700/60">
+              Needs replenishment
+            </p>
           </CardContent>
         </Card>
       </div>
 
-      <Card className="rounded-3xl border-none shadow-sm bg-white overflow-hidden">
-        <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-slate-50 border-b">
-                  <th className="p-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-                    Product & Variant
-                  </th>
-                  <th className="p-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-                    Price
-                  </th>
-                  <th className="p-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-                    Stock Status
-                  </th>
-                  <th className="p-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-                    Total Sold
-                  </th>
-                  <th className="p-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y">
-                {allVariants.map((v) => (
-                  <tr
-                    key={v.id}
-                    className="hover:bg-slate-50/50 transition-colors"
-                  >
-                    <td className="p-4">
-                      <div className="flex flex-col">
-                        <span className="font-bold text-slate-900">
-                          {v.productName}
-                        </span>
-                        <span className="text-sm text-muted-foreground">
-                          {v.name}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="p-4">
-                      <span className="font-bold">₹{v.price}</span>
-                    </td>
-                    <td className="p-4">
-                      <div className="flex items-center gap-2">
-                        <div
-                          className={`w-2 h-2 rounded-full ${
-                            v.stock === 0
-                              ? "bg-rose-500"
-                              : v.stock < lowStockThreshold
-                                ? "bg-amber-500"
-                                : "bg-emerald-500"
-                          }`}
-                        />
-                        <span
-                          className={`font-bold ${
-                            v.stock === 0
-                              ? "text-rose-600"
-                              : v.stock < lowStockThreshold
-                                ? "text-amber-600"
-                                : "text-slate-700"
-                          }`}
-                        >
-                          {v.stock} in stock
-                        </span>
-                      </div>
-                    </td>
-                    <td className="p-4">
-                      <div className="flex items-center gap-1">
-                        <TrendingUp className="w-3 h-3 text-emerald-500" />
-                        <span className="font-medium">{v.soldCount}</span>
-                      </div>
-                    </td>
-                    <td className="p-4 text-right">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="rounded-xl font-bold"
-                        asChild
-                      >
-                        <Link href={`/admin/products/${v.productId}/inventory`}>
-                          Edit Stock
-                        </Link>
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
+      <InventoryTable data={allVariants as InventoryItem[]} />
     </div>
   );
 }

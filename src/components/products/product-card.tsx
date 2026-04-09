@@ -3,55 +3,79 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, ArrowRight } from "lucide-react";
 import * as motion from "motion/react-client";
+import Image from "next/image";
+
+export interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  images: string[] | null;
+  label: string | null;
+  variants?: { price: string }[];
+}
 
 interface ProductCardProps {
-  product: any;
+  product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
   const minPrice = product.variants?.[0]?.price || "0";
+  const firstImage = product.images?.[0] || "/placeholder.png";
+
   const labelColor =
     product.label === "bestseller"
-      ? "bg-amber-100 text-amber-800"
+      ? "bg-amber-50/80 text-amber-700 font-medium"
       : product.label === "featured"
-        ? "bg-orange-100 text-orange-800"
-        : "bg-blue-100 text-blue-800";
+        ? "bg-orange-50/80 text-orange-700 font-medium"
+        : "bg-blue-50/80 text-blue-700 font-medium";
 
   return (
     <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2 }}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="group relative flex flex-col overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-sm shadow-slate-100 transition-all hover:shadow-xl hover:shadow-slate-200/50"
     >
-      {/* Product Image Placeholder */}
-      <div className="relative aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-xl bg-gray-50 flex items-center justify-center italic text-gray-400 group-hover:bg-gray-100 transition-colors">
+      {/* Image Container */}
+      <div className="relative aspect-square w-full overflow-hidden rounded-[2rem] bg-slate-50">
         {product.label && (
           <Badge
-            className={`absolute top-2 left-2 uppercase tracking-tighter ${labelColor} border-none`}
+            className={`absolute top-4 left-4 z-20 border-none px-3 py-1 text-[10px] uppercase tracking-widest backdrop-blur-md ${labelColor}`}
           >
             {product.label.replace("_", " ")}
           </Badge>
         )}
+        
+        <Image
+          src={firstImage}
+          alt={product.name}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 z-10 bg-black/0 transition-colors duration-300 group-hover:bg-black/5" />
+        
         <Link
           href={`/products/${product.slug}`}
-          className="absolute inset-0 z-10"
+          className="absolute inset-0 z-20"
         >
           <span className="sr-only">View {product.name}</span>
         </Link>
-        <span className="text-sm font-medium">Coming Soon</span>
       </div>
 
-      <div className="mt-4 flex flex-col flex-1">
-        <div className="mb-2 flex items-center justify-between">
-          <h3 className="font-serif text-xl font-bold text-brand-dark group-hover:text-brand-primary transition-colors">
+      {/* Content */}
+      <div className="flex flex-col p-6 pt-5">
+        <div className="mb-1 flex items-start justify-between">
+          <h3 className="font-serif text-xl font-medium tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors">
             <Link href={`/products/${product.slug}`}>{product.name}</Link>
           </h3>
-          <p className="text-lg font-bold text-brand-dark">₹{minPrice}</p>
+          <p className="text-lg font-medium text-slate-900">₹{minPrice}</p>
         </div>
 
-        <p className="mb-6 line-clamp-2 text-sm text-muted-foreground flex-1">
+        <p className="mb-6 line-clamp-2 text-xs font-medium leading-relaxed text-slate-500">
           {product.description ||
             "The traditional handcrafted flavor of Indian kitchens."}
         </p>
@@ -59,14 +83,18 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="flex items-center gap-2">
           <Button
             asChild
-            className="flex-1 rounded-full bg-brand-dark hover:bg-brand-primary text-white font-semibold transition-all"
+            variant="outline"
+            className="flex-1 rounded-2xl border-none bg-slate-50 h-11 text-xs font-semibold text-slate-700 shadow-sm shadow-slate-100 transition-all hover:bg-orange-500 hover:text-white"
           >
-            <Link href={`/products/${product.slug}`}>Select Flavor</Link>
+            <Link href={`/products/${product.slug}`} className="flex items-center justify-center gap-2">
+              <span>View Details</span>
+              <ArrowRight size={14} />
+            </Link>
           </Button>
           <Button
             size="icon"
             variant="outline"
-            className="rounded-full border-gray-200 hover:border-brand-primary hover:text-brand-primary"
+            className="h-11 w-11 rounded-2xl border-none bg-slate-50 text-slate-400 shadow-sm shadow-slate-100 transition-all hover:bg-slate-100 hover:text-slate-600"
           >
             <ShoppingCart className="h-4 w-4" />
           </Button>

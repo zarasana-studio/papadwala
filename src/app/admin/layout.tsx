@@ -13,7 +13,7 @@ export default async function AdminLayout({
     headers: await headers(),
   });
 
-  if (!session?.user || session.user.email !== process.env.ADMIN_EMAIL) {
+  if (!session?.user || session.user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
     return redirect("/");
   }
 

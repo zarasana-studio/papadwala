@@ -1,3 +1,5 @@
+# use bun as package manager for this entire repository anytime
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

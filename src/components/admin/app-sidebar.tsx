@@ -2,7 +2,6 @@
 import {
   Frame,
   Home,
-  Map,
   PieChart,
   ShoppingBag,
   ShoppingCart,
@@ -20,6 +19,8 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { useSession } from "@/lib/auth-client";
+import { usePathname } from "next/navigation";
 
 import { type LucideIcon } from "lucide-react";
 
@@ -54,18 +55,12 @@ export interface SidebarAnalyticsItem {
 
 // 5. THE MASTER INTERFACE (Entire Data Object)
 export interface SidebarData {
-  user: SidebarUser;
   navMain: SidebarNavItem[];
   analytics: SidebarAnalyticsItem[];
 }
 
 // This is sample data.
 const data: SidebarData = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     {
       title: "Dashboard",
@@ -114,6 +109,26 @@ const data: SidebarData = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: session } = useSession();
+  const pathname = usePathname();
+
+  const user: SidebarUser = {
+    name: session?.user?.name ?? "Admin User",
+    email: session?.user?.email ?? "admin@example.com",
+    avatar: session?.user?.image ?? "/avatars/default.jpg",
+  };
+
+  const navMain = data.navMain.map((item) => ({
+    ...item,
+    isActive:
+      pathname === item.url || item.items?.some((sub) => pathname === sub.url),
+  }));
+
+  const analytics = data.analytics.map((item) => ({
+    ...item,
+    isActive: pathname === item.url,
+  }));
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader className="">
@@ -125,11 +140,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavAnalytics projects={data.analytics} />
+        <NavMain items={navMain} />
+        <NavAnalytics projects={analytics} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

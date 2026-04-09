@@ -166,6 +166,18 @@ export function Header() {
                     Orders
                   </Link>
                 </DropdownMenuItem>
+                {session.user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && (
+                  <DropdownMenuItem
+                    asChild
+                    className="rounded-xl px-3 py-2 cursor-pointer focus:bg-slate-50 transition-colors"
+                  >
+                    <Link href="/admin" className="flex items-center gap-3">
+                      <Package className="w-4 h-4" />
+                      Admin Panel
+                    </Link>
+                  </DropdownMenuItem>
+                )}
+
                 <DropdownMenuSeparator className="mx-1" />
                 <DropdownMenuItem
                   className="rounded-xl px-3 py-2 text-destructive focus:text-destructive focus:bg-destructive/5 transition-colors cursor-pointer flex items-center gap-3"

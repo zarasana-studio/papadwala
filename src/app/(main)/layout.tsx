@@ -1,3 +1,4 @@
+import { RichFooter } from "@/components/home/rich-footer";
 import { Navbar } from "@/components/navbar";
 
 export default function MainLayout({
@@ -9,6 +10,7 @@ export default function MainLayout({
     <>
       <Navbar />
       {children}
+      <RichFooter />
     </>
   );
 }

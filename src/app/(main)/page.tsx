@@ -1,20 +1,46 @@
 import React from "react";
 import { Hero } from "@/components/home/hero";
+import { ProductShowcase } from "@/components/home/product-showcase";
+import { BentoFeatures } from "@/components/home/bento-features";
+import { FAQSection } from "@/components/home/faq-section";
+import { db } from "@/lib/db";
+import { products, productVariants } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 
-const Home = () => {
+export default async function HomePage() {
+  // Fetch featured/top products for the showcase
+  const topProducts = await db
+    .select({
+      id: products.id,
+      name: products.name,
+      slug: products.slug,
+      description: products.description,
+      images: products.images,
+      label: products.label,
+    })
+    .from(products)
+    .where(eq(products.isArchived, false))
+    .limit(4);
+
+  // Fetch prices for these products
+  const productsWithPrices = await Promise.all(
+    topProducts.map(async (p) => {
+      const variants = await db
+        .select({ price: productVariants.price })
+        .from(productVariants)
+        .where(eq(productVariants.productId, p.id))
+        .orderBy(productVariants.price);
+
+      return { ...p, variants };
+    }),
+  );
+
   return (
-    <main className="flex-1">
+    <main className="flex-1 bg-white">
       <Hero />
-      <div className="container mx-auto px-4 py-12">
-        <h2 className="text-3xl font-serif font-bold text-brand-dark mb-8 uppercase tracking-widest text-center underline decoration-brand-primary decoration-double underline-offset-8">
-          Our Best Selling Flavors
-        </h2>
-        <p className="text-muted-foreground italic text-center text-lg mt-8">
-          The finest handmade papads of India, coming right after we bake them!
-        </p>
-      </div>
+      <ProductShowcase products={productsWithPrices} />
+      <BentoFeatures />
+      <FAQSection />
     </main>
   );
-};
-
-export default Home;
+}

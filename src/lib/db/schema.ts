@@ -63,6 +63,7 @@ export const products = pt("products", {
   isAvailable: boolean("is_available").default(true).notNull(),
   label: labelEnum("label"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  isArchived: boolean("is_archived").default(false).notNull(),
 });
 
 export const productVariants = pt("product_variants", {
@@ -75,6 +76,7 @@ export const productVariants = pt("product_variants", {
   price: decimal("price", { precision: 10, scale: 2 }).notNull(),
   stock: integer("stock").default(0).notNull(),
   soldCount: integer("sold_count").default(0).notNull(),
+  isArchived: boolean("is_archived").default(false).notNull(),
 });
 
 export const orders = pt("orders", {
