@@ -1,6 +1,5 @@
 import * as dotenv from "dotenv";
 dotenv.config({ path: ".env.local" });
-import { db } from "../src/lib/db";
 import {
   products,
   productVariants,
@@ -8,6 +7,8 @@ import {
   orderItems,
   phonepeTransactions,
 } from "../src/lib/db/schema";
+import { Pool } from "pg";
+import { drizzle } from "drizzle-orm/node-postgres";
 
 // Simple slugify for the script
 const slugify = (text: string) =>
@@ -42,6 +43,19 @@ const flavors = [
 const labels = ["coming_soon", "featured", "bestseller", null];
 
 async function seed() {
+  console.log("Migration started...");
+
+  if (!process.env.DATABASE_URL) {
+    throw new Error("DATABASE_URL is not set in environment variables");
+  }
+
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    max: 1, // Only one connection for migrations
+  });
+
+  const db = drizzle(pool);
+
   console.log("🚀 Starting large-scale seeding (40 products)...");
 
   try {
