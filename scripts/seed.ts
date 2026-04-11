@@ -1,3 +1,5 @@
+import * as dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
 import { db } from "../src/lib/db";
 import {
   products,
@@ -6,9 +8,6 @@ import {
   orderItems,
   phonepeTransactions,
 } from "../src/lib/db/schema";
-import * as dotenv from "dotenv";
-
-dotenv.config({ path: ".env.local" });
 
 // Simple slugify for the script
 const slugify = (text: string) =>
