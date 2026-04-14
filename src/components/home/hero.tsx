@@ -4,143 +4,154 @@ import * as motion from "motion/react-client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CookingPot, Leaf, Sparkles } from "lucide-react";
+import { ArrowRight, Leaf } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function Hero() {
   return (
-    <section className="relative py-20 w-full overflow-hidden bg-brand-dark">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/papadherosquare.png"
-          alt="Artisan Papads"
-          fill
-          className="object-cover object-center"
-          priority
-        />
-        {/* Gradients and Overlays */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/40 via-transparent to-black/60" />
-        <div className="absolute inset-0 bg-brand-dark/20 backdrop-brightness-[0.85]" />
-      </div>
+    <section className="relative w-full h-[calc(100vh+20px)] mask-b-from-97% flex items-center overflow-hidden bg-[oklch(0.92_0.12_85)]">
+      {/* Abstract Background Shapes */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-[oklch(0.88_0.15_85)] -skew-x-12 translate-x-1/2 opacity-50" />
+      <div
+        className={cn(
+          "absolute inset-0",
+          "bg-size-[20px_20px]",
+          "bg-[radial-gradient(var(--color-amber-500)_1px,transparent_1px)]",
+        )}
+      />
 
-      {/* Content Container */}
-      <div className="relative mx-auto h-full max-w-7xl px-6 lg:px-8">
-        <div className="flex h-full flex-col justify-center">
-          <div className="max-w-2xl space-y-8">
-            {/* Tagline */}
+      <div className="pointer-events-none absolute inset-0 bg-[oklch(0.92_0.12_85)] mask-[radial-gradient(ellipse_at_left,black_50%,white_10%,transparent_80%)]"></div>
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          {/* Content Area */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left z-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-xl"
+              className="inline-flex items-center gap-2 mb-6"
             >
-              <Sparkles size={14} className="text-amber-200" />
-              <p className="text-[0.65rem] font-medium tracking-[0.3em] uppercase text-amber-50">
-                Traditional Heritage Since 1987
+              <div className="h-px w-8 bg-brand-dark/30" />
+              <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-brand-dark/60">
+                The Gold Standard of Papad
               </p>
             </motion.div>
 
-            {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-serif text-5xl font-medium leading-[1.1] text-white sm:text-7xl lg:text-8xl"
+              transition={{ duration: 1, delay: 0.2 }}
+              className="font-serif text-7xl font-medium leading-[0.95] text-brand-dark mb-8 tracking-tighter"
             >
-              Experience the, <br />
-              <span className="text-orange-200">Heritage</span> of Taste.
+              Traditional
+              <span className="font-light text-brand-primary"> Taste.</span>
+              <br />
+              Pure{" "}
+              <span className="text-brand-primary font-light">
+                Ingredients.
+              </span>
             </motion.h1>
 
-            {/* Sub-headline */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="max-w-md text-lg font-medium leading-relaxed text-orange-50/90"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="max-w-md text-base leading-relaxed text-brand-dark/80 mb-12"
             >
-              Artisanal small-batch papads, sun-dried and hand-rolled with
-              generations of tradition. Zero chemicals, 100% soul.
+              Experience the crunch that defined generations. Hand-rolled,
+              sun-dried, and seasoned with heritage.
             </motion.p>
 
-            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-6 pt-4"
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-wrap items-center gap-8"
             >
               <Button
                 asChild
-                className="group relative h-14 rounded-full bg-orange-500 px-10 text-sm font-medium tracking-wide text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]"
+                className="py-5 rounded-full bg-brand-dark hover:bg-brand-dark/90 px-7 text-sm font-medium tracking-wide uppercase text-white shadow transition-colors"
               >
-                <Link href="/products" className="flex items-center gap-2">
-                  <span>Explore Collection</span>
-                  <ArrowRight
-                    size={16}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
+                <Link href="/products" className="flex items-center gap-3">
+                  Shop Collection
+                  <ArrowRight size={18} />
                 </Link>
               </Button>
-              <Link
-                href="/about"
-                className="text-sm font-medium text-white/90 underline-offset-8 transition-colors hover:text-white hover:underline"
+              <Button
+                className="group px-7 py-5 rounded-full gap-2 text-sm font-medium tracking-wide uppercase text-brand-dark/90 hover:text-brand-dark hover:bg-yellow-100/50 shadow shadow-yellow-800/10 transition-colors bg-yellow-100/50 backdrop-blur-sm"
+                asChild
               >
-                Our Legacy
-              </Link>
+                <Link href="/about">Our Roots</Link>
+              </Button>
             </motion.div>
+
+            {/* Quick Stats/Trust badges */}
+            <div className="mt-20 grid grid-cols-2 md:grid-cols-3 gap-10">
+              <StatItem label="Years of Heritage" value="35+" />
+              <StatItem label="Stone Ground" value="100%" />
+              <StatItem label="Hand Rolled" value="Daily" />
+            </div>
           </div>
 
-          {/* Floating Features Bar (Desktop) */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="absolute bottom-12 left-6 right-6 hidden items-center justify-between gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-2xl lg:flex max-w-7xl mx-auto"
-          >
-            <FeatureItem
-              icon={<CookingPot size={20} className="text-amber-200" />}
-              title="Small Batch Production"
-              desc="Quality over quantity, every time."
-            />
-            <div className="h-10 w-px bg-white/10" />
-            <FeatureItem
-              icon={<Leaf size={20} className="text-emerald-300" />}
-              title="Clean Ingredients"
-              desc="No preservatives, no chemicals."
-            />
-            <div className="h-10 w-px bg-white/10" />
-            <FeatureItem
-              icon={<Sparkles size={20} className="text-orange-200" />}
-              title="Authentic Spices"
-              desc="Directly sourced from organic farms."
-            />
-          </motion.div>
+          {/* Image Area */}
+          <div className="lg:col-span-5 relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{
+                duration: 1.2,
+                delay: 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="relative aspect-square w-full"
+            >
+              {/* Decorative background circle */}
+              <div className="absolute inset-0 bg-brand-primary/10 rounded-full blur-3xl" />
+
+              <Image
+                src="/transparent/papadcircletransparent1.webp"
+                alt="Premium Hand-rolled Papads"
+                height={1080}
+                width={1920}
+                className="object-cover scale-110 aspect-square drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)]"
+                priority
+              />
+
+              {/* Floating label */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-10 -right-4 bg-white/40 backdrop-blur-xl border border-white/40 px-6 py-4 rounded-3xl shadow-lg ring-1 ring-black/5"
+              >
+                <div className="flex items-center gap-3">
+                  <Leaf className="text-emerald-600 h-5 w-5" />
+                  <span className="text-[0.65rem] font-black tracking-widest uppercase text-brand-dark">
+                    100% Organic Spices
+                  </span>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function FeatureItem({
-  icon,
-  title,
-  desc,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-}) {
+function StatItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center gap-4">
-      <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10">
-        {icon}
-      </div>
-      <div>
-        <h3 className="text-xs font-semibold text-white tracking-wide">
-          {title}
-        </h3>
-        <p className="text-[10px] text-white/60 font-medium">{desc}</p>
-      </div>
+    <div className="flex flex-col gap-1">
+      <span className="text-xl font-serif font-semibold text-brand-dark tracking-tight">
+        {value}
+      </span>
+      <span className="text-[0.6rem] font-medium tracking-widest uppercase text-brand-dark/40">
+        {label}
+      </span>
     </div>
   );
 }

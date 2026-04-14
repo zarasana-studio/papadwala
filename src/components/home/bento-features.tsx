@@ -40,7 +40,7 @@ const features = [
 
 export function BentoFeatures() {
   return (
-    <section className="bg-slate-50/50 py-32">
+    <section className=" py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-start space-y-4 mb-16">
           <p className="text-[0.65rem] font-medium tracking-[0.3em] uppercase text-orange-600">
@@ -59,11 +59,11 @@ export function BentoFeatures() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.02,
                 rotateX: -2,
                 rotateY: 2,
-                z: 20
+                z: 20,
               }}
               className={`${feature.color} ${feature.size} group relative overflow-hidden rounded-[2.5rem] p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-slate-200/50 perspective-1000`}
             >
@@ -73,10 +73,12 @@ export function BentoFeatures() {
               </div>
 
               <div className="relative z-10 flex h-full flex-col justify-between space-y-12">
-                <div className={`${feature.iconColor} bg-white/60 backdrop-blur-md h-12 w-12 rounded-[1rem] flex items-center justify-center shadow-sm shadow-slate-200/50 transition-transform duration-500 group-hover:-translate-y-1`}>
+                <div
+                  className={`${feature.iconColor} bg-white/60 backdrop-blur-md h-12 w-12 rounded-[1rem] flex items-center justify-center shadow-sm shadow-slate-200/50 transition-transform duration-500 group-hover:-translate-y-1`}
+                >
                   <feature.icon size={24} />
                 </div>
-                
+
                 <div>
                   <h3 className="font-serif text-2xl font-medium text-slate-900 mb-3">
                     {feature.title}

@@ -13,7 +13,7 @@ interface ProductShowcaseProps {
 
 export function ProductShowcase({ products }: ProductShowcaseProps) {
   return (
-    <section className="bg-white py-32">
+    <section className="py-32 bg-white mask-y-from-95%">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-center text-center space-y-4 mb-20">
           <motion.p
@@ -70,7 +70,10 @@ export function ProductShowcase({ products }: ProductShowcaseProps) {
           >
             <Link href="/products" className="flex items-center gap-2">
               <span>View All Flavors</span>
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-1"
+              />
             </Link>
           </Button>
         </motion.div>
