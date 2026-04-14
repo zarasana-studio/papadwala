@@ -13,14 +13,13 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
             <Image
               src="/PapadImage1.jpeg"
               alt="Handcrafted Papadwala Papads"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover opacity-50"
               priority
               height={1920}
               width={1080}
             />
 
-            <div className="absolute inset-0 bg-linear-to-br from-black/70 via-brand-dark/55 to-amber-900/45" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(255,201,122,0.35),transparent_38%),radial-gradient(circle_at_85%_78%,rgba(255,109,52,0.28),transparent_30%)]" />
+            <div className="absolute inset-0 bg-linear-to-br from-amber-950/90 backdrop-blur-2xl to-orange-950/85 mask-linear-135 mask-linear-from-70% " />
 
             <div className="absolute inset-x-10 top-9 z-20 flex items-center justify-between">
               <div className="rounded-full border border-white/30 bg-white/10 px-5 py-2.5 backdrop-blur-xl">
@@ -54,7 +53,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 
             <div className="absolute right-10 top-[24%] z-20 w-56 rounded-3xl border border-white/20 bg-white/10 p-5 backdrop-blur-2xl">
               <p className="text-[0.62rem] tracking-[0.22em] text-orange-100/70">
-                TODAY'S HIGHLIGHT
+                TODAY&apos;S HIGHLIGHT
               </p>
               <p className="mt-3 font-serif text-2xl text-orange-50">
                 Royal Lehsun

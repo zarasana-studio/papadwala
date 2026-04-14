@@ -13,7 +13,7 @@ interface ProductShowcaseProps {
 
 export function ProductShowcase({ products }: ProductShowcaseProps) {
   return (
-    <section className="py-32 mask-y-from-95% overflow-hidden">
+    <section className="py-32 mask-y-from-95% overflow-hidden bg-amber-100/30 backdrop-blur-3xl">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
         {/* Subtle background decorative shapes inside the container */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -63,9 +63,11 @@ export function ProductShowcase({ products }: ProductShowcaseProps) {
           {products.slice(0, 4).map((product, idx) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 40 }}
+              layout
+              layoutId={JSON.stringify(product)}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{
                 delay: idx * 0.1,
                 duration: 0.7,

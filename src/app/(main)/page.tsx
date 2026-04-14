@@ -35,7 +35,7 @@ export default async function HomePage() {
   );
 
   return (
-    <main className="flex-1 bg-amber-100">
+    <main className="flex-1 bg-amber-50">
       <Hero />
       <ProductShowcase products={productsWithPrices} />
       <BentoFeatures />

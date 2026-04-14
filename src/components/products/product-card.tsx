@@ -33,7 +33,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <motion.div
       transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
-      className="group h-[400px] relative flex flex-col overflow-hidden rounded-[2.5rem] bg-white/30 p-2 shadow-sm shadow-brand-dark/5"
+      className="group h-[400px] relative flex flex-col overflow-hidden rounded-[2.5rem] bg-white/50 p-2 shadow-sm shadow-brand-dark/5"
     >
       {/* Image Container */}
       <Link

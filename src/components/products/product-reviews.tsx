@@ -5,7 +5,7 @@ import { useSession } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "../ui/textarea";
 import { Input } from "@/components/ui/input";
-import { Star, User } from "lucide-react";
+import { Star, User, Sparkles } from "lucide-react";
 import { createComment } from "@/lib/actions";
 import { toast } from "sonner";
 import * as motion from "motion/react-client";
@@ -52,22 +52,25 @@ export function ProductReviews({
   };
 
   return (
-    <div className="mt-24 border-t border-gray-100 pt-16">
-      <h2 className="font-serif text-3xl font-bold text-brand-dark mb-12">
-        Customer Reviews ({comments.length})
-      </h2>
+    <div className="mt-32 pt-20 border-t border-brand-dark/10">
+      <div className="flex items-center gap-2 mb-12">
+        <Sparkles className="text-brand-primary h-5 w-5" />
+        <h2 className="font-serif text-3xl font-medium text-brand-dark tracking-tight">
+          Heritage Feedback ({comments.length})
+        </h2>
+      </div>
 
       <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
         {/* Review Form */}
         <div className="lg:col-span-5">
           {session ? (
-            <div className="rounded-3xl bg-gray-50 p-8">
-              <h3 className="text-xl font-bold text-brand-dark mb-6">
-                Write a review
+            <div className="rounded-[2rem] bg-brand-primary/5 p-8 border border-brand-primary/10">
+              <h3 className="text-lg font-medium text-brand-dark mb-6 tracking-wide">
+                Share your thought
               </h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs font-medium uppercase tracking-widest text-brand-dark/60 mb-2">
                     Rating
                   </label>
                   <div className="flex gap-1">
@@ -78,13 +81,13 @@ export function ProductReviews({
                         onClick={() => setRating(star)}
                         onMouseEnter={() => setHover(star)}
                         onMouseLeave={() => setHover(0)}
-                        className="p-1 focus:outline-none transition-transform hover:scale-125"
+                        className="p-1 focus:outline-none transition-transform hover:scale-110"
                       >
                         <Star
-                          className={`h-8 w-8 ${
+                          className={`h-6 w-6 transition-colors duration-200 ${
                             (hover || rating) >= star
-                              ? "fill-yellow-400 text-yellow-400"
-                              : "text-gray-300"
+                              ? "fill-[#f59e0b] text-[#f59e0b]"
+                              : "text-brand-dark/20"
                           }`}
                         />
                       </button>
@@ -95,16 +98,16 @@ export function ProductReviews({
                 <div>
                   <label
                     htmlFor="title"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-xs font-medium uppercase tracking-widest text-brand-dark/60 mb-2"
                   >
-                    Review Title
+                    Headline
                   </label>
                   <Input
                     id="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placeholder="e.g. Best papad I've ever had!"
-                    className="rounded-xl border-gray-200"
+                    placeholder="e.g. A taste of home..."
+                    className="h-12 rounded-xl border border-brand-dark/10 bg-white/50 px-4 text-sm font-medium focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/50 shadow-sm"
                     required
                   />
                 </div>
@@ -112,9 +115,9 @@ export function ProductReviews({
                 <div>
                   <label
                     htmlFor="description"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-xs font-medium uppercase tracking-widest text-brand-dark/60 mb-2"
                   >
-                    Description
+                    Your Experience
                   </label>
                   <Textarea
                     id="description"
@@ -122,8 +125,8 @@ export function ProductReviews({
                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                       setDescription(e.target.value)
                     }
-                    placeholder="Tell us about the flavor, crunch, and your experience..."
-                    className="rounded-xl border-gray-200 min-h-30"
+                    placeholder="Tell us about the crunch, the spices, and the memories..."
+                    className="rounded-[1rem] border border-brand-dark/10 bg-white/50 p-4 text-sm font-medium focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/50 min-h-32 shadow-sm"
                     required
                   />
                 </div>
@@ -131,22 +134,22 @@ export function ProductReviews({
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full rounded-full bg-brand-dark hover:bg-brand-primary py-6 font-bold shadow-lg"
+                  className="w-full rounded-2xl bg-brand-dark hover:bg-[#2a1a16] h-14 text-white hover:text-white font-medium shadow-md transition-all duration-300"
                 >
                   {isSubmitting ? "Submitting..." : "Post Review"}
                 </Button>
               </form>
             </div>
           ) : (
-            <div className="rounded-3xl border-2 border-dashed border-gray-200 p-12 text-center">
-              <User className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-brand-dark mb-2">
+            <div className="rounded-[2rem] border border-dashed border-brand-dark/20 bg-brand-dark/5 p-12 text-center flex flex-col items-center">
+              <User className="h-10 w-10 text-brand-dark/30 mb-4" />
+              <h3 className="text-[17px] font-medium text-brand-dark mb-2">
                 Join the conversation
               </h3>
-              <p className="text-muted-foreground mb-6 italic">
-                Sign in to share your thoughts on this flavor.
+              <p className="text-sm text-brand-dark/60 mb-8 max-w-xs text-balance">
+                Sign in to share your thoughts on this flavor and join our heritage community.
               </p>
-              <Button asChild className="rounded-full bg-brand-primary">
+              <Button asChild className="rounded-full bg-brand-dark hover:bg-[#2a1a16] px-8 h-12 text-[13px] font-medium transition-all">
                 <a href="/signin">Sign In to Review</a>
               </Button>
             </div>
@@ -160,50 +163,50 @@ export function ProductReviews({
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 key={comment.id}
-                className="group"
+                className="group border-b border-brand-dark/5 pb-10 last:border-0"
               >
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="h-10 w-10 rounded-xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center overflow-hidden">
                     {comment.user.image ? (
                       <img src={comment.user.image} alt={comment.user.name} />
                     ) : (
-                      <User className="h-6 w-6 text-gray-400" />
+                      <User className="h-5 w-5 text-brand-dark/40" />
                     )}
                   </div>
                   <div>
-                    <h4 className="font-bold text-brand-dark lowercase">
+                    <h4 className="font-medium text-sm text-brand-dark capitalize">
                       {comment.user.name}
                     </h4>
-                    <div className="flex gap-0.5">
+                    <div className="flex gap-0.5 mt-0.5">
                       {[1, 2, 3, 4, 5].map((s) => (
                         <Star
                           key={s}
                           className={`h-3 w-3 ${
                             comment.rating >= s
-                              ? "fill-yellow-400 text-yellow-400"
-                              : "text-gray-200"
+                              ? "fill-[#f59e0b] text-[#f59e0b]"
+                              : "text-brand-dark/10"
                           }`}
                         />
                       ))}
                     </div>
                   </div>
-                  <span className="ml-auto text-xs text-muted-foreground italic font-medium">
+                  <span className="ml-auto text-xs text-brand-dark/40 font-medium">
                     {new Date(comment.createdAt).toLocaleDateString()}
                   </span>
                 </div>
-                <h5 className="text-lg font-bold text-brand-dark mb-2 font-serif">
-                  {comment.title}
+                <h5 className="text-[17px] font-serif font-medium text-brand-dark mb-2 tracking-wide">
+                  "{comment.title}"
                 </h5>
-                <p className="text-muted-foreground italic leading-relaxed text-balance">
+                <p className="text-[14px] text-brand-dark/70 leading-relaxed text-balance">
                   {comment.description}
                 </p>
               </motion.div>
             ))
           ) : (
-            <div className="py-20 text-center">
-              <p className="text-muted-foreground italic text-lg">
+            <div className="py-24 text-center border border-dashed border-brand-dark/10 rounded-[2rem]">
+              <p className="text-brand-dark/50 text-[15px] font-medium tracking-wide">
                 No reviews yet. Be the first to share your experience!
               </p>
             </div>

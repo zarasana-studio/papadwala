@@ -6,6 +6,7 @@ import { ProductCard } from "./product-card";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import * as motion from "motion/react-client";
 
 export function ProductsList({ initialData }: { initialData: any[] }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,16 +24,16 @@ export function ProductsList({ initialData }: { initialData: any[] }) {
   );
 
   return (
-    <div className="space-y-8">
-      {/* Search & Filter Bar */}
-      <div className="relative max-w-md mx-auto">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <Search className="w-5 h-5 text-gray-400" />
+    <div className="space-y-12">
+      {/* Search Bar - Minimal & elegant */}
+      <div className="relative max-w-sm mx-auto">
+        <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+          <Search className="h-4 w-4 text-brand-dark/40" strokeWidth={1.5} />
         </div>
         <Input
           type="search"
-          placeholder="Search by flavor or keyword..."
-          className="pl-10 rounded-full border-gray-200 focus:border-brand-primary focus:ring-brand-primary"
+          placeholder="Search authentic flavors..."
+          className="h-12 pl-12 pr-4 rounded-full bg-white/50 border border-brand-dark/10 text-sm font-medium focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/50 shadow-sm transition-all focus:bg-white text-brand-dark/80 placeholder:text-brand-dark/40"
           value={searchQuery}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSearchQuery(e.target.value)
@@ -41,18 +42,33 @@ export function ProductsList({ initialData }: { initialData: any[] }) {
       </div>
 
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 xl:grid-cols-3">
+          {filteredProducts.map((product, idx) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: idx * 0.1,
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <ProductCard product={product} />
+            </motion.div>
           ))}
         </div>
       ) : (
-        <div className="py-20 text-center">
-          <p className="text-muted-foreground text-lg italic">
-            No papads found matching "{searchQuery}". Try searching for
-            something else!
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="py-24 text-center flex flex-col items-center justify-center space-y-4"
+        >
+          <Search className="w-10 h-10 text-brand-dark/20" strokeWidth={1.5} />
+          <p className="text-brand-dark/60 text-[15px] font-medium tracking-wide">
+            No papads found matching &quot;{searchQuery}&quot;.
           </p>
-        </div>
+        </motion.div>
       )}
     </div>
   );

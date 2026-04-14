@@ -19,7 +19,7 @@ export function Hero() {
           delay: 0.2,
           ease: "easeOut",
         }}
-        className="absolute top-0 right-0 w-1/3 h-full bg-amber-100/80 -skew-x-12 translate-x-1/2 backdrop-blur-3xl backdrop-filter z-2"
+        className="absolute top-0 right-0 w-1/3 h-full bg-amber-50/80 -skew-x-12 translate-x-1/2 backdrop-blur-3xl backdrop-filter z-2"
       />
       <div
         className={cn(
@@ -29,7 +29,7 @@ export function Hero() {
         )}
       />
 
-      <div className="pointer-events-none absolute inset-0 bg-amber-100 mask-[radial-gradient(ellipse_at_left,black_50%,white_10%,transparent_80%)]"></div>
+      <div className="pointer-events-none absolute inset-0 bg-amber-50 mask-[radial-gradient(ellipse_at_left,black_50%,white_10%,transparent_80%)]"></div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">

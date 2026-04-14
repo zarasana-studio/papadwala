@@ -1,89 +1,108 @@
-"use client";
-
 import * as motion from "motion/react-client";
-import { ShieldCheck, History, Hammer, Leaf } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import {
+  SvgHandmade,
+  SvgOrganic,
+  SvgQuality,
+  SvgTraditional,
+} from "@/SVGs/BentoGrid";
 
 const features = [
   {
     title: "Uncompromising Quality",
     desc: "Every batch is tested for consistency in crispiness, taste, and texture.",
-    icon: ShieldCheck,
-    color: "bg-sky-50",
-    iconColor: "text-sky-600",
+
+    Graphic: SvgQuality,
+    gradient: "bg-gradient-to-br from-white/30 to-orange-100/50",
+    iconColor: "text-orange-700",
     size: "col-span-1 md:col-span-2",
   },
   {
     title: "Deeply Traditional",
     desc: "Recipes passed down through centuries, preserved in every bite.",
-    icon: History,
-    color: "bg-amber-50",
-    iconColor: "text-amber-600",
+
+    Graphic: SvgTraditional,
+    gradient: "bg-gradient-to-br from-[#f8f5f2] to-amber-100/40",
+    iconColor: "text-amber-700",
     size: "col-span-1",
   },
   {
     title: "Small Batch Handmade",
     desc: "No massive machines. Just skilled artisans hand-rolling every single papad.",
-    icon: Hammer,
-    color: "bg-orange-50",
+
+    Graphic: SvgHandmade,
+    gradient: "bg-gradient-to-tr from-orange-50 to-amber-50/80",
     iconColor: "text-orange-600",
     size: "col-span-1",
   },
   {
     title: "100% Organic & Pure",
     desc: "Zero preservatives, zero chemicals. Only nature's finest ingredients.",
-    icon: Leaf,
-    color: "bg-emerald-50",
-    iconColor: "text-emerald-600",
+
+    Graphic: SvgOrganic,
+    gradient: "bg-gradient-to-tl from-emerald-50/80 to-teal-50/40",
+    iconColor: "text-emerald-700",
     size: "col-span-1 md:col-span-2",
   },
 ];
 
 export function BentoFeatures() {
   return (
-    <section className=" py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-col items-start space-y-4 mb-16">
-          <p className="text-[0.65rem] font-medium tracking-[0.3em] uppercase text-orange-600">
-            Why Papadwala?
-          </p>
-          <h2 className="font-serif text-4xl font-medium tracking-tight text-slate-900 sm:text-5xl">
-            Rooted in Tradition, <br /> Crafted for the Modern Table.
-          </h2>
+    <section className="py-24 sm:py-32 mask-y-from-95%  relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col items-center text-center space-y-6 mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center gap-2 px-3 py-1 bg-brand-primary/10 backdrop-blur-sm rounded-full border border-brand-primary/30 group cursor-default"
+          >
+            <Sparkles
+              size={10}
+              className="text-amber-600 transition-transform duration-500 group-hover:rotate-12"
+            />
+            <span className="text-[10px] font-medium tracking-widest uppercase text-brand-dark/80">
+              Why Papadwala?
+            </span>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ delay: 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-brand-dark"
+          >
+            Timeless taste.{" "}
+            <span className="text-brand-primary">Modern crunch.</span>
+          </motion.h2>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {features.map((feature, idx) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              whileHover={{
-                scale: 1.02,
-                rotateX: -2,
-                rotateY: 2,
-                z: 20,
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                delay: idx * 0.1,
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1],
               }}
-              className={`${feature.color} ${feature.size} group relative overflow-hidden rounded-[2.5rem] p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-slate-200/50 perspective-1000`}
+              className={`${feature.gradient} ${feature.size} group relative flex flex-col justify-between rounded-[2.5rem] p-8 md:p-10 transition-all duration-500 shadow shadow-amber-800/20`}
             >
-              {/* Abstract Isometric SVG Graphic */}
-              <div className="absolute -right-8 -top-8 h-40 w-40 opacity-[0.03] transition-transform duration-700 group-hover:scale-125 group-hover:rotate-12">
-                <feature.icon className="h-full w-full" />
+              {/* Graphic Background Area */}
+              <div className="absolute z-0 pointer-events-none transition-transform duration-700 ease-[0.22,1,0.36,1] h-full inset-y-0 right-0 w-32">
+                <feature.Graphic />
               </div>
 
-              <div className="relative z-10 flex h-full flex-col justify-between space-y-12">
-                <div
-                  className={`${feature.iconColor} bg-white/60 backdrop-blur-md h-12 w-12 rounded-[1rem] flex items-center justify-center shadow-sm shadow-slate-200/50 transition-transform duration-500 group-hover:-translate-y-1`}
-                >
-                  <feature.icon size={24} />
-                </div>
-
-                <div>
-                  <h3 className="font-serif text-2xl font-medium text-slate-900 mb-3">
+              <div className="relative z-10 flex h-full flex-col justify-between space-y-24 md:space-y-12">
+                <div className="max-w-xs md:max-w-sm">
+                  <h3 className="font-serif text-2xl font-medium text-brand-dark mb-3 tracking-tight transition-colors duration-300 group-hover:text-amber-800">
                     {feature.title}
                   </h3>
-                  <p className="text-[13px] font-medium leading-relaxed text-slate-600 max-w-xs">
+                  <p className="text-sm font-normal leading-relaxed text-brand-dark/70 transition-colors duration-300 group-hover:text-brand-dark text-balance">
                     {feature.desc}
                   </p>
                 </div>
