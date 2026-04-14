@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShoppingCart, Menu, X, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Link } from "next-view-transitions";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -80,13 +80,6 @@ export function Navbar() {
               >
                 {link.name}
               </span>
-              {pathname === link.href && (
-                <motion.div
-                  layoutId="nav-underline"
-                  className="absolute -bottom-1 left-0 right-0 h-px bg-brand-primary rounded-full"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
             </Link>
           ))}
         </div>
@@ -175,7 +168,7 @@ export function Navbar() {
               ) : (
                 <Button
                   asChild
-                  className="hidden md:flex rounded-full bg-brand-dark hover:bg-brand-dark/90 text-white font-bold px-8 shadow-sm transition-all hover:scale-105"
+                  className="hidden md:flex rounded-full bg-brand-primary hover:bg-brand-primary/90 text-white text-xs px-6 shadow-sm"
                 >
                   <Link href="/signin">Sign In</Link>
                 </Button>

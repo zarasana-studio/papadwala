@@ -35,7 +35,7 @@ export default async function HomePage() {
   );
 
   return (
-    <main className="flex-1 bg-[oklch(0.92_0.12_85)]">
+    <main className="flex-1 bg-amber-100">
       <Hero />
       <ProductShowcase products={productsWithPrices} />
       <BentoFeatures />

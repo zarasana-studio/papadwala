@@ -4,23 +4,32 @@ import * as motion from "motion/react-client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Leaf } from "lucide-react";
+import { ArrowRight, Leaf, Sun, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
   return (
-    <section className="relative w-full h-[calc(100vh+20px)] mask-b-from-97% flex items-center overflow-hidden bg-[oklch(0.92_0.12_85)]">
+    <section className="relative w-full h-[calc(100vh+20px)] mask-b-from-97% flex items-center overflow-hidden">
       {/* Abstract Background Shapes */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-[oklch(0.88_0.15_85)] -skew-x-12 translate-x-1/2 opacity-50" />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1,
+          delay: 0.2,
+          ease: "easeOut",
+        }}
+        className="absolute top-0 right-0 w-1/3 h-full bg-amber-100/80 -skew-x-12 translate-x-1/2 backdrop-blur-3xl backdrop-filter z-2"
+      />
       <div
         className={cn(
-          "absolute inset-0",
+          "absolute inset-0 z-0",
           "bg-size-[20px_20px]",
           "bg-[radial-gradient(var(--color-amber-500)_1px,transparent_1px)]",
         )}
       />
 
-      <div className="pointer-events-none absolute inset-0 bg-[oklch(0.92_0.12_85)] mask-[radial-gradient(ellipse_at_left,black_50%,white_10%,transparent_80%)]"></div>
+      <div className="pointer-events-none absolute inset-0 bg-amber-100 mask-[radial-gradient(ellipse_at_left,black_50%,white_10%,transparent_80%)]"></div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -71,7 +80,7 @@ export function Hero() {
             >
               <Button
                 asChild
-                className="py-5 rounded-full bg-brand-dark hover:bg-brand-dark/90 px-7 text-sm font-medium tracking-wide uppercase text-white shadow transition-colors"
+                className="py-5 rounded-full bg-brand-primary hover:bg-brand-primary/90 px-7 text-sm font-medium tracking-wide uppercase text-white shadow transition-colors"
               >
                 <Link href="/products" className="flex items-center gap-3">
                   Shop Collection
@@ -97,43 +106,108 @@ export function Hero() {
           {/* Image Area */}
           <div className="lg:col-span-5 relative">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{
-                duration: 1.2,
-                delay: 0.1,
-                ease: [0.16, 1, 0.3, 1],
+                duration: 1,
+                delay: 0.2,
+                ease: "easeOut",
               }}
               className="relative aspect-square w-full"
             >
               {/* Decorative background circle */}
-              <div className="absolute inset-0 bg-brand-primary/10 rounded-full blur-3xl" />
+              <div className="absolute inset-0 bg-brand-primary/10 rounded-full blur-3xl scale-90" />
 
-              <Image
-                src="/transparent/papadcircletransparent1.webp"
-                alt="Premium Hand-rolled Papads"
-                height={1080}
-                width={1920}
-                className="object-cover scale-110 aspect-square drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)]"
-                priority
-              />
-
-              {/* Floating label */}
+              {/* Papad Image with extremely slow continuous rotation */}
               <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute top-10 -right-4 bg-white/40 backdrop-blur-xl border border-white/40 px-6 py-4 rounded-3xl shadow-lg ring-1 ring-black/5"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 250, repeat: Infinity, ease: "linear" }}
+                className="w-full h-full flex items-center justify-center relative z-1"
               >
-                <div className="flex items-center gap-3">
-                  <Leaf className="text-emerald-600 h-5 w-5" />
-                  <span className="text-[0.65rem] font-black tracking-widest uppercase text-brand-dark">
-                    100% Organic Spices
-                  </span>
-                </div>
+                <Image
+                  src="/transparent/papadcircletransparent1.webp"
+                  alt="Premium Hand-rolled Papads"
+                  height={1080}
+                  width={1920}
+                  className="object-cover scale-110 aspect-square drop-shadow-2xl drop-shadow-amber-100/50"
+                  priority
+                />
+              </motion.div>
+
+              {/* Floating label 1: Organic */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                className="absolute top-12 -right-2 md:-right-6 z-20"
+              >
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="bg-white/60 backdrop-blur-md border border-white/40 px-5 py-3.5 rounded-2xl shadow-lg ring-1 ring-black/5"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="bg-emerald-500/20 p-1.5 rounded-full">
+                      <Leaf className="text-emerald-600 h-4 w-4" />
+                    </div>
+                    <span className="text-[0.6rem] font-bold tracking-[0.2em] uppercase text-brand-dark">
+                      100% Organic Spices
+                    </span>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Floating label 2: Sun-Dried */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+                className="absolute bottom-20 -left-2 md:-left-6 z-20"
+              >
+                <motion.div
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5,
+                  }}
+                  className="bg-white/60 backdrop-blur-md border border-white/40 px-5 py-3.5 rounded-2xl shadow-lg ring-1 ring-black/5"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="bg-amber-500/20 p-1.5 rounded-full">
+                      <Sun className="text-amber-600 h-4 w-4" />
+                    </div>
+                    <span className="text-[0.6rem] font-bold tracking-[0.2em] uppercase text-brand-dark">
+                      Sun-Dried Daily
+                    </span>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Floating label 3: Quality Seal */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+                className="absolute top-[20%] z-0"
+              >
+                <motion.div
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{
+                    duration: 4.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
+                  className="bg-gradient-to-br from-brand-primary/90 to-amber-600/90 backdrop-blur-md border border-white/40 p-3 md:p-4 rounded-full shadow-lg ring-4 ring-white/40"
+                >
+                  <Award className="text-white h-5 w-5 md:h-6 md:w-6" />
+                </motion.div>
               </motion.div>
             </motion.div>
           </div>
