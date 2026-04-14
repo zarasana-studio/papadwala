@@ -13,7 +13,7 @@ interface ProductShowcaseProps {
 
 export function ProductShowcase({ products }: ProductShowcaseProps) {
   return (
-    <section className="py-32 mask-y-from-95% overflow-hidden bg-amber-100/30 backdrop-blur-3xl">
+    <section className="py-20 sm:py-32 mask-y-from-95% overflow-hidden bg-amber-100/30 backdrop-blur-3xl">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
         {/* Subtle background decorative shapes inside the container */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -41,7 +41,7 @@ export function ProductShowcase({ products }: ProductShowcaseProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-6xl font-normal text-brand-dark"
+            className="font-serif text-[clamp(2.2rem,6vw,3.75rem)] font-normal text-brand-dark"
           >
             Our Signature{" "}
             <span className="text-brand-primary font-light">Flavors</span>
@@ -52,14 +52,14 @@ export function ProductShowcase({ products }: ProductShowcaseProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-xl text-brand-dark/80 text-sm sm:text-base font-normal leading-relaxed text-balance"
+            className="max-w-xl text-brand-dark/80 text-sm font-normal leading-relaxed text-balance"
           >
             Experience the crunch that defined generations. Hand-rolled,
             sun-dried, and seasoned with our century-old heritage recipes.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 relative z-10">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-4 relative z-10">
           {products.slice(0, 4).map((product, idx) => (
             <motion.div
               key={product.id}

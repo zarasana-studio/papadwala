@@ -4,7 +4,7 @@ import { useCart } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import * as motion from "motion/react-client";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, total } = useCart();

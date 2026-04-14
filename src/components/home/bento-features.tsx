@@ -48,8 +48,8 @@ const features = [
 
 export function BentoFeatures() {
   return (
-    <section className="py-24 sm:py-32 mask-y-from-95%  relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+    <section className="py-20 sm:py-24 lg:py-32 mask-y-from-95%  relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center space-y-6 mb-20">
           <motion.div
             initial={{ opacity: 0, y: 15, scale: 0.95 }}
@@ -78,7 +78,7 @@ export function BentoFeatures() {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 md:grid-cols-3">
           {features.map((feature, idx) => (
             <motion.div
               key={feature.title}
@@ -90,14 +90,14 @@ export function BentoFeatures() {
                 duration: 0.7,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className={`${feature.gradient} ${feature.size} group relative flex flex-col justify-between rounded-[2.5rem] p-8 md:p-10 transition-all duration-500 shadow shadow-amber-800/20`}
+              className={`${feature.gradient} ${feature.size} group relative flex flex-col justify-between rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 md:p-10 transition-all duration-500 shadow shadow-amber-800/20`}
             >
               {/* Graphic Background Area */}
               <div className="absolute z-0 pointer-events-none transition-transform duration-700 ease-[0.22,1,0.36,1] h-full inset-y-0 right-0 w-32">
                 <feature.Graphic />
               </div>
 
-              <div className="relative z-10 flex h-full flex-col justify-between space-y-24 md:space-y-12">
+              <div className="relative z-10 flex h-full flex-col justify-between space-y-12 md:space-y-12">
                 <div className="max-w-xs md:max-w-sm">
                   <h3 className="font-serif text-2xl font-medium text-brand-dark mb-3 tracking-tight transition-colors duration-300 group-hover:text-amber-800">
                     {feature.title}

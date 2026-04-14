@@ -28,13 +28,13 @@ export function ProductDetails({ product }: { product: any }) {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-2 pt-8">
+    <div className="grid grid-cols-1 gap-y-10 gap-x-12 lg:grid-cols-2 pt-8">
       {/* Product Image Section */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="relative aspect-square md:aspect-[4/5] rounded-[2.5rem] bg-brand-primary/5 flex items-center justify-center overflow-hidden border border-brand-primary/10 group group-hover:border-brand-primary/20 transition-colors"
+        className="relative aspect-square md:aspect-square rounded-[2rem] sm:rounded-[2.5rem] bg-brand-primary/5 flex items-center justify-center overflow-hidden border border-brand-primary/10 group group-hover:border-brand-primary/20 transition-colors"
       >
         <div className="absolute inset-0 bg-[radial-gradient(var(--color-amber-500)_1px,transparent_1px)] opacity-[0.15] bg-[size:16px_16px] pointer-events-none" />
 
@@ -151,7 +151,7 @@ export function ProductDetails({ product }: { product: any }) {
         </div>
 
         {/* Quality Guarantees */}
-        <div className="grid grid-cols-2 gap-6 pt-8 border-t border-brand-dark/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 border-t border-brand-dark/10">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-50 border border-orange-100">
               <Check className="h-4 w-4 text-orange-600" />

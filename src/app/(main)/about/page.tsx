@@ -27,7 +27,7 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FDFCF8] px-4 pt-24 pb-32 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#FDFCF8] px-4 pt-20 pb-24 sm:px-6 sm:pt-24 sm:pb-32 lg:px-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
@@ -40,7 +40,7 @@ export default function AboutPage() {
               Project Disclaimer
             </span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-brand-dark text-balance">
+          <h1 className="font-serif text-[clamp(2.2rem,7vw,3.75rem)] font-normal tracking-tight text-brand-dark text-balance">
             The Story Behind{" "}
             <span className="text-brand-primary italic">Papadwala</span>
           </h1>

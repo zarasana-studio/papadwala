@@ -195,16 +195,10 @@ export function ProductsList({
       </div>
 
       {/* Sidebar Filter Panel */}
-      <motion.aside
-        initial={false}
-        animate={{
-          height: isMobileFiltersOpen ? "auto" : "auto",
-          opacity: isMobileFiltersOpen ? 1 : 1,
-          display: isMobileFiltersOpen ? "block" : "none",
-        }}
-        className={`lg:!block w-full lg:w-72 shrink-0 space-y-8 ${
+      <aside
+        className={`w-full lg:block lg:w-72 shrink-0 space-y-8 ${
           isMobileFiltersOpen ? "block" : "hidden"
-        }`}
+        } lg:!block`}
       >
         <div className="sticky top-28 bg-white/50 backdrop-blur-xl border border-brand-dark/10 p-6 rounded-[2rem] shadow-sm">
           <div className="flex items-center justify-between mb-8 pb-4 border-b border-brand-dark/10">
@@ -348,7 +342,7 @@ export function ProductsList({
             </div>
           )}
         </div>
-      </motion.aside>
+      </aside>
 
       {/* Main Content Grid */}
       <div className="flex-1 space-y-12">

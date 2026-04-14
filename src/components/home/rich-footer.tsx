@@ -6,8 +6,8 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 export function Footer() {
   return (
     <footer className="relative pt-24 pb-8 bg-amber-50 text-amber-950">
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-8 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-4 flex flex-col items-start">
             <Link href="/" className="flex items-center gap-2 mb-6 group">
@@ -42,7 +42,7 @@ export function Footer() {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8 md:pl-8 lg:pl-16">
+          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:pl-8 lg:pl-16">
             {/* Shop */}
             <div className="flex flex-col gap-4">
               <h3 className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-amber-950 mb-2">
@@ -100,9 +100,9 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-amber-900/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-amber-900/50">
+        <div className="pt-8 border-t border-amber-900/10 flex flex-col items-center gap-4 text-xs text-amber-900/50 sm:flex-row sm:justify-between">
           <p>© {new Date().getFullYear()} Papadwala. All rights reserved.</p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <Link
               href="/privacy"
               className="hover:text-amber-950 transition-colors"

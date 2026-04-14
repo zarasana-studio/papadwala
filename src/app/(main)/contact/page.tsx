@@ -13,16 +13,16 @@ import Link from "next/link";
 
 export default function Contactpage() {
   return (
-    <main className="min-h-screen bg-[#FDFCF8] px-4 pt-24 pb-32 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#FDFCF8] px-4 pt-20 pb-24 sm:pt-24 sm:pb-32 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
-        <header className="mb-16 flex flex-col items-center text-center space-y-6">
+        <header className="mb-12 sm:mb-16 flex flex-col items-center text-center space-y-6">
           <div className="flex items-center gap-2 px-3 py-1 bg-amber-100/50 backdrop-blur-sm rounded-full border border-amber-200/50">
             <Sparkles size={12} className="text-amber-600" />
             <span className="text-[11px] font-medium tracking-widest uppercase text-amber-800">
               Get in Touch
             </span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-brand-dark text-balance">
+          <h1 className="font-serif text-[clamp(2.2rem,7vw,3.75rem)] font-normal tracking-tight text-brand-dark text-balance">
             We&apos;d love to hear from{" "}
             <span className="text-brand-primary italic">you</span>
           </h1>

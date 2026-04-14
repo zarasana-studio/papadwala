@@ -25,7 +25,7 @@ export default async function ProductsPage() {
 
   return (
     <main className="min-h-screen bg-[#FDFCF8]">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
         <header className="mb-20 flex flex-col items-center text-center space-y-6">
           <div className="flex items-center gap-2 px-3 py-1 bg-brand-primary/10 backdrop-blur-sm rounded-full border border-brand-primary/30">
             <Sparkles size={10} className="text-amber-600" />

@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 export function Hero() {
   return (
-    <section className="relative w-full h-[calc(100vh+20px)] mask-b-from-97% flex items-center overflow-hidden">
+    <section className="relative w-full min-h-screen mask-b-from-97% flex items-center overflow-hidden">
       {/* Abstract Background Shapes */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -31,8 +31,8 @@ export function Hero() {
 
       <div className="pointer-events-none absolute inset-0 bg-amber-50 mask-[radial-gradient(ellipse_at_left,black_50%,white_10%,transparent_80%)]"></div>
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-16 sm:py-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           {/* Content Area */}
           <div className="lg:col-span-7 flex flex-col items-start text-left z-10">
             <motion.div
@@ -51,7 +51,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="font-serif text-7xl font-medium leading-[0.95] text-brand-dark mb-8 tracking-tighter"
+              className="font-serif text-[clamp(2.8rem,8vw,4.75rem)] font-medium leading-[0.95] text-brand-dark mb-6 sm:mb-8 tracking-tighter"
             >
               Traditional
               <span className="font-light text-brand-primary"> Taste.</span>
@@ -76,7 +76,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-wrap items-center gap-8"
+              className="flex flex-wrap items-center gap-4 sm:gap-8"
             >
               <Button
                 asChild
@@ -96,7 +96,7 @@ export function Hero() {
             </motion.div>
 
             {/* Quick Stats/Trust badges */}
-            <div className="mt-20 grid grid-cols-2 md:grid-cols-3 gap-10">
+            <div className="mt-10 sm:mt-20 grid grid-cols-3 gap-4 sm:gap-10">
               <StatItem label="Years of Heritage" value="35+" />
               <StatItem label="Stone Ground" value="100%" />
               <StatItem label="Hand Rolled" value="Daily" />
@@ -104,7 +104,7 @@ export function Hero() {
           </div>
 
           {/* Image Area */}
-          <div className="lg:col-span-5 relative">
+          <div className="lg:col-span-5 relative mt-8 lg:mt-0">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -113,7 +113,7 @@ export function Hero() {
                 delay: 0.2,
                 ease: "easeOut",
               }}
-              className="relative aspect-square w-full"
+              className="relative aspect-square w-full max-w-sm mx-auto lg:max-w-none"
             >
               {/* Decorative background circle */}
               <div className="absolute inset-0 bg-brand-primary/10 rounded-full blur-3xl scale-90" />
@@ -139,7 +139,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-                className="absolute top-12 -right-2 md:-right-6 z-20"
+                className="absolute top-8 right-0 sm:-right-2 md:-right-6 z-20"
               >
                 <motion.div
                   animate={{ y: [0, -8, 0] }}
@@ -166,7 +166,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-                className="absolute bottom-20 -left-2 md:-left-6 z-20"
+                className="absolute bottom-12 left-0 sm:-left-2 md:-left-6 z-20"
               >
                 <motion.div
                   animate={{ y: [0, 8, 0] }}

@@ -35,7 +35,7 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="py-32 mask-y-from-95% bg-amber-200/10 relative ">
+    <section className="py-20 sm:py-32 mask-y-from-95% bg-amber-200/10 relative ">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -63,7 +63,7 @@ export function FAQSection() {
 
       <div className="pointer-events-none absolute inset-0 bg-amber-50 mask-[radial-gradient(ellipse_at_center,black_50%,white_10%,transparent_80%)]"></div>
 
-      <div className="mx-auto max-w-4xl px-6 lg:px-8 z-1 relative">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 z-1 relative">
         <div className="text-center flex flex-col items-center space-y-4 mb-20">
           <motion.div
             initial={{ opacity: 0, y: 15, scale: 0.95 }}
@@ -97,7 +97,7 @@ export function FAQSection() {
               <AccordionItem
                 key={idx}
                 value={`item-${idx}`}
-                className="border-none bg-white/40 rounded-[1.5rem] px-8 transition-all hover:bg-white/50"
+                className="border-none bg-white/40 rounded-[1.25rem] sm:rounded-[1.5rem] px-5 sm:px-8 transition-all hover:bg-white/50"
               >
                 <AccordionTrigger className="text-sm font-medium text-slate-900 py-6 hover:no-underline">
                   {faq.question}

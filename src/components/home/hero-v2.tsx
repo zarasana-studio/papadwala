@@ -28,7 +28,7 @@ export default function HeroV2() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex justify-center gap-6 mb-10"
+          className="flex flex-wrap justify-center gap-3 sm:gap-6 mb-10"
         >
           <ValueBadge icon={<Leaf size={14} />} text="100% Organic" />
           <ValueBadge icon={<Sparkles size={14} />} text="Hand-made Heritage" />
@@ -61,11 +61,11 @@ export default function HeroV2() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-wrap justify-center items-center gap-6"
+          className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6"
         >
           <Button
             asChild
-            className="h-16 rounded-full bg-brand-dark hover:bg-brand-dark/90 px-10 text-sm font-bold tracking-[0.1em] uppercase text-white shadow-xl transition-all hover:scale-105 active:scale-95"
+            className="w-full sm:w-auto h-14 sm:h-16 rounded-full bg-brand-dark hover:bg-brand-dark/90 px-8 sm:px-10 text-sm font-bold tracking-[0.1em] uppercase text-white shadow-xl transition-all hover:scale-105 active:scale-95"
           >
             <Link href="/products" className="flex items-center gap-3">
               Explore Our Varieties
@@ -83,7 +83,7 @@ export default function HeroV2() {
         </motion.div>
 
         {/* Trust Stats (Mobile Responsive) */}
-        <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 border-t border-brand-dark/5 pt-12 opacity-60">
+        <div className="mt-16 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 border-t border-brand-dark/5 pt-10 sm:pt-12 opacity-60">
           <Stat text="35+ Years Heritage" />
           <Stat text="Ancient Recipes" />
           <Stat text="No Preservatives" />
