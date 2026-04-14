@@ -43,7 +43,7 @@ export function Hero() {
             >
               <div className="h-px w-8 bg-brand-dark/30" />
               <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-brand-dark/60">
-                The Gold Standard of Papad
+                Ranchi's Gold Standard of Papad
               </p>
             </motion.div>
 
@@ -56,9 +56,9 @@ export function Hero() {
               Traditional
               <span className="font-light text-brand-primary"> Taste.</span>
               <br />
-              Pure{" "}
+              Ranchi's{" "}
               <span className="text-brand-primary font-light">
-                Ingredients.
+                Pride.
               </span>
             </motion.h1>
 
@@ -68,8 +68,8 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="max-w-md text-base leading-relaxed text-brand-dark/80 mb-12"
             >
-              Experience the crunch that defined generations. Hand-rolled,
-              sun-dried, and seasoned with heritage.
+              Experience the authentic crunch that defined generations across Jharkhand. 
+              Hand-rolled, sun-dried, and seasoned with our local heritage.
             </motion.p>
 
             <motion.div

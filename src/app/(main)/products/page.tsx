@@ -1,10 +1,27 @@
-import { getProducts } from "@/lib/actions";
+import { getProducts, getFilterOptions } from "@/lib/actions";
 import { ProductsList } from "@/components/products/products-list";
 import { Suspense } from "react";
 import { Sparkles } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Shop Authentic Papads | Buy Besan & Aaloo Papad in Ranchi",
+  description:
+    "Browse our premium collection of traditional handcrafted papads. Fast delivery of chemical-free Besan, Aaloo, and Lehsun papads locally in Ranchi and across Jharkhand.",
+  keywords: [
+    "buy besan papad in ranchi",
+    "authentic aaloo papad online",
+    "handcrafted lehsun papad delivery",
+    "best local snacks jharkhand",
+    "buy traditional papad near me",
+  ],
+};
 
 export default async function ProductsPage() {
-  const initialProducts = await getProducts();
+  const [initialProductsResponse, initialFilterOptions] = await Promise.all([
+    getProducts({ page: 1, limit: 9 }),
+    getFilterOptions(),
+  ]);
 
   return (
     <main className="min-h-screen bg-[#FDFCF8]">
@@ -39,7 +56,10 @@ export default async function ProductsPage() {
             </div>
           }
         >
-          <ProductsList initialData={initialProducts} />
+          <ProductsList 
+            initialData={initialProductsResponse} 
+            initialFilterOptions={initialFilterOptions}
+          />
         </Suspense>
       </div>
     </main>

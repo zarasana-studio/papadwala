@@ -36,6 +36,23 @@ const faqs = [
 export function FAQSection() {
   return (
     <section className="py-32 mask-y-from-95% bg-amber-200/10 relative ">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map((faq) => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
+          })
+        }}
+      />
       <div
         className={cn(
           "absolute inset-0 z-0",

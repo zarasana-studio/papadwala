@@ -63,7 +63,7 @@ export function BentoFeatures() {
               className="text-amber-600 transition-transform duration-500 group-hover:rotate-12"
             />
             <span className="text-[10px] font-medium tracking-widest uppercase text-brand-dark/80">
-              Why Papadwala?
+              Why Ranchi's Papadwala?
             </span>
           </motion.div>
           <motion.h2
@@ -73,7 +73,7 @@ export function BentoFeatures() {
             transition={{ delay: 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-brand-dark"
           >
-            Timeless taste.{" "}
+            Ranchi's timeless taste.{" "}
             <span className="text-brand-primary">Modern crunch.</span>
           </motion.h2>
         </div>

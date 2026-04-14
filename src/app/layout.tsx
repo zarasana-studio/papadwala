@@ -35,51 +35,103 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Papadwala | Traditional Handcrafted Papads",
-    template: "%s | Papadwala",
+    default: "Papadwala | Best Traditional Papad Store in Ranchi",
+    template: "%s | Papadwala Ranchi",
   },
   description:
-    "Authentic, chemical-free, handcrafted Indian papads made with traditional recipes and love. Experience the crunch of tradition with Aaloo, Besan, and Lehsun flavors.",
+    "Ranchi's finest authentic, chemical-free handcrafted Indian papads. Made with traditional legacy recipes. Buy the best Aaloo, Besan, and Lehsun papads in Jharkhand.",
   keywords: [
-    "papad",
-    "indian snacks",
-    "handcrafted papad",
-    "chemical free food",
-    "traditional recipes",
-    "aaloo papad",
-    "besan papad",
+    "best papad store in ranchi",
+    "buy papad local ranchi",
+    "handcrafted papad jharkhand",
+    "traditional papadwala ranchi",
+    "chemical free food ranchi",
+    "authentic indian snacks ranchi",
+    "aaloo papad buy near me",
+    "besan papad ranchi delivery",
   ],
-  authors: [{ name: "Papadwala Team" }],
-  creator: "Papadwala",
-  metadataBase: new URL("https://papadwala.com"), // Replace with actual domain
+  authors: [{ name: "Papadwala Artisans" }],
+  creator: "Papadwala Ranchi",
+  metadataBase: new URL("https://papadwala.com"),
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: "https://papadwala.com",
-    title: "Papadwala | Traditional Handcrafted Papads",
+    title: "Papadwala | Best Traditional Papad Store in Ranchi",
     description:
-      "Authentic, chemical-free, handcrafted Indian papads made with traditional recipes and love.",
-    siteName: "Papadwala",
+      "Ranchi's finest authentic, chemical-free handcrafted Indian papads. Taste the authentic legacy of Jharkhand.",
+    siteName: "Papadwala Ranchi",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Papadwala - The Crunch of Tradition",
+        alt: "Papadwala Ranchi - The Crunch of Tradition",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Papadwala | Traditional Handcrafted Papads",
+    title: "Papadwala | Best Traditional Papad Store in Ranchi",
     description:
-      "Authentic, chemical-free, handcrafted Indian papads made with traditional recipes and love.",
-    images: ["/og-image.jpg"],
+      "Ranchi's finest authentic, chemical-free handcrafted Indian papads made with traditional recipes and love.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  alternates: {
+    canonical: "https://papadwala.com",
+  },
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  name: "Papadwala Ranchi",
+  image: "https://papadwala.com/og-image.jpg",
+  "@id": "https://papadwala.com",
+  url: "https://papadwala.com",
+  telephone: "+918001234567",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "123 Heritage Lane, Traditional Market District",
+    addressLocality: "Ranchi",
+    addressRegion: "Jharkhand",
+    postalCode: "834001",
+    addressCountry: "IN",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 23.3441,
+    longitude: 85.3096,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
+    opens: "09:00",
+    closes: "18:00",
+  },
+  sameAs: [
+    "https://facebook.com/papadwalaranchi",
+    "https://instagram.com/papadwalaranchi",
+  ],
 };
 
 export default function RootLayout({
@@ -102,6 +154,12 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
         <Providers>
           <ViewTransitions>{children}</ViewTransitions>
         </Providers>
